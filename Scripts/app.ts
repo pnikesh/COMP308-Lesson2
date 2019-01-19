@@ -14,93 +14,84 @@
 //     window.addEventListener("load", Start);
 
 // })();
+module objects {
+   
+export abstract class Person  {
+    // PRIVATE INSTANCE VARIABLES
+    private _age: number;
+    private _name: string;
 
-module objects{
-    export class Person {
-        // Private instance variables
-        private _age: number;
-        private _name: string;
-    
-    
-        // This are my public properties
-        get age(): number{
-            return this._age;
-        }
-    
-        set age(newAge: number) {
-            this._age = newAge;
-        }
-    
-        get name(): string{
-            return this._name;
-        }
-    
-        set name(newName: string) {
-            this._name = newName;
-        }
-    
-        constructor(age: number, name:string) { 
-            this.age = age;
-            this.name = name;
-        }
-        
-        public saysHello():void {
-            console.log(`${this.name} says Hellooo!!!!!`);
-        }
-    
-        
+    // PUBLIC PROPERTIES
+    get age(): number {
+        return this._age;
     }
-    
-        export class Students extends objects.Person{
-        
-            //private instance variables
-            private _studentID: string;
-    
-            get studentID(): string{
-                return this._studentID;
-            }
-    
-             set studentID(newStudentID: string) {
-                 this._studentID = newStudentID;
-            
-        }
-    
-    
-            //piblic properties
-            constructor(age:number, name:string, studentID:string) {
-                super(age, name);
-                
-            }
-        
-            //private methods
-    
-            //public methods
-            public studies(): void{
-                console.log(`${this.name} with student Id ${this._studentID} studies in this college`);
-            }
-    
-    }
-    
-    }
-    let person: objects.Person;
-    person = new objects.Person(23, "Nik");
-    person.saysHello();
-    
 
-    //IIFE -- immediately invoked function expression
-    (function(){
-        function Start(){
-             let student: objects.Students = new objects.Students(20, "Nik", "ewfew254");
-            student.saysHello();
-             student.studies();
+    set age(newAge: number) {
+        this._age = newAge;
+    }
+
+    get name(): string {
+        return this._name;
+    }
+
+    set name(newName: string) {
+        this._name = newName;
+    }
+
+    constructor(age: number, name:string) {
+        this.age = age;
+        this.name = name;
+    }
+
+    public saysHello():void {
+        console.log(`${this.name} says Hello!`);
+    }
+    }
+
+    export class Student extends objects.Person {
+        // PRIVATE INSTANCE VARIABLES
+        private _studentID: string;
+
+        // PUBLIC PROPERTIES
+        get studentID(): string {
+            return this._studentID;
         }
 
-    window.addEventListener("load",Start);
+        set studentID(newStudentID: string) {
+            this._studentID = newStudentID;
+        }
+
+        constructor(age:number, name:string, studentID:string) {
+            super(age, name);
+
+            this.studentID = studentID;
+        }
+
+        // PRIVATE METHODS
+
+        // PUBLIC METHODS
+        public studies(): void {
+            console.log(`${this.name} with studentID: ${this.studentID} is studying.`)
+        }
+    }
+
+}
+
+
+/*
+const person: objects.Person = new objects.Person(30, "Tom");
+person.saysHello();
+*/
+
+// IIFE -- Immediately Invoked Function Expression
+(function(){
+
+    function Start() {
+        const student: objects.Student = new objects.Student(20, "Nik", "P008490000");
+        student.saysHello();
+        student.studies();
+    }
+
+    window.addEventListener("load", Start);
 
 })();
-
-
-
-    let student: objects.Students = new objects.Students(20, "Nik", "ewfew254");
-    student.saysHello();
-    student.studies();

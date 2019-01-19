@@ -30,7 +30,7 @@ var objects;
             this.name = name;
         }
         Object.defineProperty(Person.prototype, "age", {
-            // This are my public properties
+            // PUBLIC PROPERTIES
             get: function () {
                 return this._age;
             },
@@ -51,18 +51,20 @@ var objects;
             configurable: true
         });
         Person.prototype.saysHello = function () {
-            console.log(this.name + " says Hellooo!!!!!");
+            console.log(this.name + " says Hello!");
         };
         return Person;
     }());
     objects.Person = Person;
-    var Students = /** @class */ (function (_super) {
-        __extends(Students, _super);
-        //piblic properties
-        function Students(age, name, studentID) {
-            return _super.call(this, age, name) || this;
+    var Student = /** @class */ (function (_super) {
+        __extends(Student, _super);
+        function Student(age, name, studentID) {
+            var _this = _super.call(this, age, name) || this;
+            _this.studentID = studentID;
+            return _this;
         }
-        Object.defineProperty(Students.prototype, "studentID", {
+        Object.defineProperty(Student.prototype, "studentID", {
+            // PUBLIC PROPERTIES
             get: function () {
                 return this._studentID;
             },
@@ -72,28 +74,26 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        //private methods
-        //public methods
-        Students.prototype.studies = function () {
-            console.log(this.name + " with student Id " + this._studentID + " studies in this college");
+        // PRIVATE METHODS
+        // PUBLIC METHODS
+        Student.prototype.studies = function () {
+            console.log(this.name + " with studentID: " + this.studentID + " is studying.");
         };
-        return Students;
+        return Student;
     }(objects.Person));
-    objects.Students = Students;
+    objects.Student = Student;
 })(objects || (objects = {}));
-var person;
-person = new objects.Person(23, "Nik");
+/*
+const person: objects.Person = new objects.Person(30, "Tom");
 person.saysHello();
-//IIFE -- immediately invoked function expression
+*/
+// IIFE -- Immediately Invoked Function Expression
 (function () {
     function Start() {
-        var student = new objects.Students(20, "Nik", "ewfew254");
+        var student = new objects.Student(20, "Nik", "P008490000");
         student.saysHello();
         student.studies();
     }
     window.addEventListener("load", Start);
 })();
-var student = new objects.Students(20, "Nik", "ewfew254");
-student.saysHello();
-student.studies();
 //# sourceMappingURL=app.js.map
